@@ -4,26 +4,27 @@ import { loginValidation } from "@/utils/validations";
 import { sign } from "jsonwebtoken";
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 
-export const GET = async () => {
+export const GET = async (request: NextRequest
+) => {
     try {
-        const session = await getServerSession(authOptions);
+        const body = await request.json();
 
-        if (!loginValidation.safeParse(session?.user)) {
+        if (!loginValidation.safeParse(body)) {
             return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 400 })
         }
 
         await connectDB();
 
-        const names = String(session?.user?.name).split(" ")
+        const names = String(body.name).split(" ")
         const name = {
             first_name: names[0],
             last_name: names[1]
         }
 
-        const isUser = await User.find({ email: session?.user?.email });
+        const isUser = await User.find({ email: body.email });
 
         if (isUser.length > 0) {
             const cookie = jwt(String(isUser[0]._id));
@@ -32,9 +33,9 @@ export const GET = async () => {
         }
 
         const user = await User.create({
-            email: session?.user?.email,
+            email: body.email,
             name: name,
-            profile_icon: session?.user?.image
+            profile_icon: body.image
         })
 
         const cookie = jwt(String(user._id));
