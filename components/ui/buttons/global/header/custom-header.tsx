@@ -5,13 +5,26 @@ import { LuSearch, LuUserCircle2 } from "react-icons/lu";
 import { LuShoppingBag } from "react-icons/lu";
 import TxtLogo from "../txt-logo";
 import CustomModal from "@/components/ui/custom-modal";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { SignIn } from "../../auth";
+import { CALLBACK_URI } from "@/utils/constants";
 
 const CustomHeader = ({ navList }: { navList: string[] }) => {
   const [on, toggle] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  // const params=usePathname()
-  // console.log(params)
+  const { data: session } = useSession();
+  const router = useRouter();
+  const handleRedirect = (type: 'Profile' | 'Cart') => {
+    if (!session || !session.user) {
+      router.refresh();
+      router.push(`/api/auth/signin?callbackUrl=${CALLBACK_URI}`)
+      return;
+    };
+    router.refresh();
+    type === 'Profile' ? router.push('/account/profile') : router.push('/account/cart')
+  }
 
   return (
     <header className="w-full h-20 border-b select-none text-primary flex items-center justify-between md:relative ">
@@ -32,7 +45,7 @@ const CustomHeader = ({ navList }: { navList: string[] }) => {
                 "relative after:border-accent after:absolute hover:after:border after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-200 cursor-pointer hover:text-accent select-none"
               }
             >
-              <a href={"/" + e.toLowerCase()}>{e}</a>
+              <Link href={"/" + e.toLowerCase()}>{e}</Link>
             </li>
           ))}
         </ul>
@@ -46,9 +59,9 @@ const CustomHeader = ({ navList }: { navList: string[] }) => {
         >
           Hello
         </CustomModal>
-        <LuUserCircle2 className="cursor-pointer hover:text-accent" />
+        <LuUserCircle2 onClick={() => { handleRedirect('Profile') }} className="cursor-pointer hover:text-accent" />
         <div className="md:w-20 md:h-20 grid place-content-center md:bg-secondary/50">
-          <LuShoppingBag className="cursor-pointer hover:text-accent" />
+          <LuShoppingBag onClick={() => { handleRedirect('Cart') }} className="cursor-pointer hover:text-accent" />
         </div>
         <span className="md:hidden w-20 h-20 grid place-content-center bg-secondary/50">
           <Hamburger

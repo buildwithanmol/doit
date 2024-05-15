@@ -8,7 +8,7 @@ const ProductSchema = new Schema({
     title: String,
     description: String,
     tags: [String],
-    category: String,
+    category: {parent: String, child: String},
     sku: String,
     price: {
         selling: Number,

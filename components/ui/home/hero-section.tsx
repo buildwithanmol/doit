@@ -1,9 +1,11 @@
 import Link from "next/link";
 import React from "react";
+import { SignIn } from "../buttons/auth";
 
 const HeroSection = () => {
   return (
     <section className="w-full bg-white flex max-h-screen">
+      <SignIn />
       <div className="w-2/5  p-4 px-6 space-y-2">
         <h2 className="text-8xl text-primary font-karantina font-light">
           WearIt <br /> Self Lacing <br /> Shoes

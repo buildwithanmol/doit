@@ -7,8 +7,7 @@ const UserSchema = new Schema({
     },
     email: { type: String, required: true, unique: true },
     preferences: {
-        dark: Boolean,
-        address: Number
+        dark: Boolean
     },
     address: {
         shipping_address: String,
