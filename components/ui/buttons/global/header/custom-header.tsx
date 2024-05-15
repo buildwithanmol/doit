@@ -5,7 +5,7 @@ import { LuSearch, LuUserCircle2 } from "react-icons/lu";
 import { LuShoppingBag } from "react-icons/lu";
 import TxtLogo from "../txt-logo";
 import CustomModal from "@/components/ui/custom-modal";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
+import {usePathname} from "next/navigation";
 
 const CustomHeader = ({ navList }: { navList: string[] }) => {
   const [on, toggle] = useState(false);
@@ -15,10 +15,12 @@ const CustomHeader = ({ navList }: { navList: string[] }) => {
 
   return (
     <header className="w-full h-20 border-b select-none text-primary flex items-center justify-between md:relative ">
-      <TxtLogo />
+      <div className="w-20 border-r h-20 grid place-content-center">
+        <TxtLogo />
+      </div>
       <nav
         className={
-          "z-50 flex items-start overflow-hidden duration-700 transition-[translate, opacity] " +
+          "z-50 flex items-start md:border-t-0 border-t overflow-hidden duration-700 transition-[translate, opacity] " +
           (on ? "translate-x-0 " : "-translate-x-full md:translate-x-0") +
           " md:flex-row flex-col md:p-0 p-6 md:items-center gap-4 md:static fixed top-16 translate-y-1 md:translate-y-0 left-0 right-0 bottom-0 bg-white md:bg-transparent"
         }
@@ -47,10 +49,10 @@ const CustomHeader = ({ navList }: { navList: string[] }) => {
           Hello
         </CustomModal>
         <LuUserCircle2 className="cursor-pointer hover:text-accent" />
-        <div className="md:w-20 md:h-20 grid place-content-center md:bg-secondary/50">
+        <div className="md:w-20 border-l md:h-20 grid place-content-center md:bg-secondary/50">
           <LuShoppingBag className="cursor-pointer hover:text-accent" />
         </div>
-        <span className="md:hidden w-20 h-20 grid place-content-center bg-secondary/50">
+        <span className="md:hidden border-l w-20 h-20 grid place-content-center bg-secondary/50">
           <Hamburger
             toggled={on}
             color="#E1FE02"

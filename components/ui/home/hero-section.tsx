@@ -3,8 +3,8 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className="w-full bg-white flex max-h-screen">
-      <div className="w-2/5  p-4 px-6 space-y-2">
+    <section className="w-full bg-white flex flex-col md:flex-row md:max-h-[screen] border-b">
+      <div className="w-full md:w-2/5  p-4 px-6 space-y-2">
         <h2 className="text-8xl text-primary font-karantina font-light">
           WearIt <br /> Self Lacing <br /> Shoes
         </h2>
@@ -18,7 +18,7 @@ const HeroSection = () => {
           <Link href={"/"}>Buy Now</Link>
         </button>
       </div>
-      <div className="w-[60%]  bg-secondary/50"></div>
+      <div className="w-full md:w-[60%] min-h-40  bg-secondary/50"></div>
     </section>
   );
 };
