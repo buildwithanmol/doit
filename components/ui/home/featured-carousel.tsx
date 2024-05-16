@@ -75,7 +75,7 @@ const FeaturedCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
 
       <section
         ref={containerRef}
-        className="overflow-hidden h-full w-full overflow-x-scroll flex flex-nowrap snap-mandatory snap-x scroll-smooth gap-3 [&::-webkit-scrollbar]:hidden rounded-xl [scrollbar-width:none]"
+        className="overflow-hidden h-full w-full overflow-x-scroll flex flex-nowrap snap-mandatory snap-x scroll-smooth gap-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
       >
         {carouselData.map((item, index) => (
           <div

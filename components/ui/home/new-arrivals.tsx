@@ -11,7 +11,7 @@ const NewArrivals = () => {
     <section className='grid grid-cols-2 md:grid-cols-4 gap-3 md:px-5 justify-items-center'>
         {
             [1,2,3,4,5,6,7,8].map((item, index)=>(
-            <ProductCard/>
+            <ProductCard variant='V1'/>
             ))
         }
     </section>

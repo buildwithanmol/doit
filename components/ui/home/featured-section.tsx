@@ -6,19 +6,19 @@ const FeaturedSection = () => {
   let carouselData = [
     {
       title: "carousel1",
-      element: <ProductCard />,
+      element: <ProductCard variant="V1"/>,
     },
     {
       title: "carousel2",
-      element: <ProductCard />,
+      element: <ProductCard variant="V1"/>,
     },
     {
       title: "carousel3",
-      element: <ProductCard />,
+      element: <ProductCard variant="V1"/>,
     },
     {
       title: "carousel4",
-      element: <ProductCard />,
+      element: <ProductCard variant="V1"/>,
     },
   ];
   return (

@@ -6,7 +6,7 @@ interface TxtLogoProps {
 }
 const TxtLogo = ({logoSize="text-4xl"}: TxtLogoProps) => {
   return (
-    <Link href="/" className={`font-karantina text-accent ${logoSize} p-2`}>WearIT.</Link>
+    <Link href="/" className={`font-karantina text-accent ${logoSize} p-2 select-none`}>WearIT.</Link>
   )
 }
 
