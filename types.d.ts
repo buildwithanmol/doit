@@ -38,3 +38,8 @@ interface IOrder {
     variation_id?: mongoose.Schema.Types.ObjectId,
     track: mongoose.Schema.Types.ObjectId
 }
+
+export enum ContentType {
+    IMAGE = 'image',
+    VIDEO = 'video'
+}
